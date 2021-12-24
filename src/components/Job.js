@@ -7,7 +7,7 @@ export default function Job(props) {
     <Fragment>
       <div className="job-container">
         <div className="job-content">
-          <img className="job-logo" src={props.logo} />
+          <img className="job-logo" alt={props.company} src={props.logo} />
           <div>
             <div className="job-details">
               <p>{props.company}</p>
@@ -28,7 +28,7 @@ export default function Job(props) {
         <div>
           <span>{props.role}</span>
           <span>{props.level}</span>
-          
+
           {
             props.languages.map((currentLanguage) => {
               return(
