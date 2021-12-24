@@ -31,9 +31,10 @@ export default function App() {
   const dataReader = Data.map((data) => {
     return(
       <Fragment key={data.id}>
-        <Job logo={companies[data.company]} company={data.company} new={data.new} featured={data.featured} 
-          postedAt={data.postedAt} contract={data.contract} location={data.location} 
-          position={data.position} role={data.role} level={data.level} 
+        <Job logo={companies[data.company]} company={data.company} new={data.new} 
+          featured={data.featured} postedAt={data.postedAt} contract={data.contract} 
+          location={data.location} position={data.position} role={data.role} 
+          level={data.level} tools={data.tools} languages={data.languages}
         />
       </Fragment>
     );

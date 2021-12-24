@@ -17,16 +17,26 @@
   height: 100px;
   width: 80%;
 
+  padding: 10px 35px;
   margin: 10px 0;
 
   border: 1px solid black;
+  border-radius: 3px;
 
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.job-content{
   display: flex;
   align-items: center;
 }
 
 .job-logo{
   width: 60px;
+
+  margin-right: 20px;
 }
 
 .job-details{
