@@ -1,6 +1,7 @@
 import { Fragment } from "react";
 import Data from "./assets/data/data.json";
 import Job from "./components/Job";
+import Attribution from "./components/Attribution"
 import "./css/reset.css";
 import "./css/style.css";
 
@@ -46,6 +47,8 @@ export default function App() {
       <div className="jobs-container">
         { dataReader }
       </div>
+
+      <Attribution />
     </Fragment>
   );
 }

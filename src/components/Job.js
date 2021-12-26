@@ -35,14 +35,14 @@ export default function Job(props) {
           </div>
         </div>
 
-        <div>
-          <span>{props.role}</span>
-          <span>{props.level}</span>
+        <div className="job-particulars">
+          <span className="job-particulars-role">{props.role}</span>
+          <span className="job-particulars-level">{props.level}</span>
 
           {
             props.languages.map((currentLanguage) => {
               return(
-                <Language language={currentLanguage}/>
+                <Language key={currentLanguage} language={currentLanguage}/>
               );
             })
           }
@@ -50,7 +50,7 @@ export default function Job(props) {
           {
             props.tools.map((currentTool) => {
               return(
-                <Tool tool={currentTool}/>
+                <Tool key={currentTool} tool={currentTool}/>
               );
             })
           }
