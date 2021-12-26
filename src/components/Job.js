@@ -36,13 +36,15 @@ export default function Job(props) {
         </div>
 
         <div className="job-particulars">
-          <span className="job-particulars-role">{props.role}</span>
-          <span className="job-particulars-level">{props.level}</span>
+          <span onClick={props.setStageSearchBar} className="job-particulars-role">{props.role}</span>
+          <span onClick={props.setStageSearchBar} className="job-particulars-level">{props.level}</span>
 
           {
             props.languages.map((currentLanguage) => {
               return(
-                <Language key={currentLanguage} language={currentLanguage}/>
+                <Language key={currentLanguage} language={currentLanguage}
+                  setStageSearchBar={props.setStageSearchBar}
+                />
               );
             })
           }
@@ -50,7 +52,9 @@ export default function Job(props) {
           {
             props.tools.map((currentTool) => {
               return(
-                <Tool key={currentTool} tool={currentTool}/>
+                <Tool key={currentTool} tool={currentTool}
+                  setStageSearchBar={props.setStageSearchBar}
+                />
               );
             })
           }

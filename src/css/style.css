@@ -13,10 +13,18 @@ body{
   background-color: hsl(180, 52%, 96%);
 }
 
+.main-background-mb{
+  margin-bottom: 200px;
+}
+
 .main-background-desktop{
   width: 100%;
 
   background-color: hsl(180, 29%, 50%);
+
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
 .jobs-container{
@@ -25,7 +33,55 @@ body{
   justify-content: center;
   align-items: center;
 
-  margin-top: 45px;
+  margin-top: 107px;
+}
+
+.jobs-search-bar{
+  height: 60px;
+  width: 80%;
+
+  padding: 15px 35px;
+  margin: 10px 0;
+  margin-bottom: 25px;
+
+  border-left: 0px solid hsl(180, 29%, 50%);
+  
+  background-color: white;
+
+  box-shadow: 0px 4px 15px rgba(91, 164, 164, 0.22);
+
+  border-radius: 5px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  position: relative;
+}
+
+.jobs-search-bar-clear{
+  font-weight: bold;
+
+  font-size: 11px;
+
+  color: hsl(180, 29%, 50%);
+
+  cursor: pointer;
+
+  display: inline-block;
+}
+
+.jobs-search-bar-clear::after {
+  content: '';
+  width: 0px;
+  height: 1px;
+  display: block;
+  background: hsl(180, 29%, 50%);
+  transition: 300ms;
+}
+
+.jobs-search-bar-clear:hover::after {
+  width: 100%;
 }
 
 .job-container{

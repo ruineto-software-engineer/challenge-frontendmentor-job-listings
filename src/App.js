@@ -1,7 +1,8 @@
-import { Fragment } from "react";
+import { Fragment, useState } from "react";
 import Data from "./assets/data/data.json";
 import Job from "./components/Job";
-import Attribution from "./components/Attribution"
+import Attribution from "./components/Attribution";
+import SearchBar from "./components/SearchBar"
 import "./css/reset.css";
 import "./css/style.css";
 
@@ -19,6 +20,9 @@ import Shortly from "./assets/images/shortly.svg";
 import Account from "./assets/images/account.svg";
 
 export default function App() {
+  const [marginBottom, setMarginBottom] = useState('main-background-mb');
+  const [searchBar, setSearchBar] = useState('');
+
   const companies = {
     "Photosnap": Photosnap,
     "Manage": Manage,
@@ -32,6 +36,11 @@ export default function App() {
     "The Air Filter Company": TheAirFilterCompany
   }
 
+  function initializeFiltering() {
+    setMarginBottom('');
+    setSearchBar(<SearchBar />);
+  }
+
   const dataReader = Data.map((data) => {
     return(
       <Fragment key={data.id}>
@@ -39,6 +48,7 @@ export default function App() {
           featured={data.featured} postedAt={data.postedAt} contract={data.contract} 
           location={data.location} position={data.position} role={data.role} 
           level={data.level} tools={data.tools} languages={data.languages}
+          setStageSearchBar={initializeFiltering}
         />
       </Fragment>
     );
@@ -46,11 +56,13 @@ export default function App() {
 
   return(
     <Fragment>
-      <div className="main-background">
+      <div className={`main-background ${ marginBottom }`}>
         <img alt="main-background-desktop" className="main-background-desktop" src={MainBackground} />
       </div>
 
       <div className="jobs-container">
+        { searchBar }
+
         { dataReader }
       </div>
 
