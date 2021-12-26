@@ -13,12 +13,13 @@ import Manage from "./assets/images/manage.svg";
 import Myhome from "./assets/images/myhome.svg";
 import Photosnap from "./assets/images/photosnap.svg";
 import Shortly from "./assets/images/shortly.svg";
+import Account from "./assets/images/account.svg";
 
 export default function App() {
   const companies = {
     "Photosnap": Photosnap,
     "Manage": Manage,
-    "Account": Photosnap,
+    "Account": Account,
     "MyHome": Myhome,
     "Loop Studios": LoopStudios,
     "FaceIt": Faceit,

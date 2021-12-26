@@ -6,6 +6,14 @@
   transition: all .5s ease-in-out;
 }
 
+body{
+  font-family: 'Spartan', sans-serif;
+  font-size: 15px;
+}
+
+.attribution { font-size: 11px; text-align: center; }
+.attribution a { color: hsl(228, 45%, 44%); }
+
 .jobs-container{
   display: flex;
   flex-direction: column;
@@ -14,14 +22,14 @@
 }
 
 .job-container{
-  height: 100px;
+  height: 120px;
   width: 80%;
 
-  padding: 10px 35px;
+  padding: 15px 35px;
   margin: 10px 0;
 
   border: 1px solid black;
-  border-radius: 3px;
+  border-radius: 5px;
 
   display: flex;
   align-items: center;
@@ -34,11 +42,84 @@
 }
 
 .job-logo{
-  width: 60px;
+  width: 65px;
 
   margin-right: 20px;
 }
 
 .job-details{
   display: flex;
+  align-items: center;
+
+  margin-bottom: 10px;
+}
+
+.job-details-company{
+  font-weight: bold;
+
+  font-size: 12px;
+
+  color: hsl(180, 29%, 50%);
+
+  margin-right: 15px;
+}
+
+.job-details-new{
+  width: 45px;
+  height: 20px;
+
+  border-radius: 30px;
+
+  padding-top: 3px;
+  margin-right: 10px;
+
+  font-size: 9px;
+  font-weight: 700;
+
+  color: white;
+
+  background-color: hsl(180, 29%, 50%);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.job-details-featured{
+  width: 70px;
+  height: 20px;
+
+  border-radius: 30px;
+
+  padding-top: 3px;
+
+  font-size: 9px;
+  font-weight: 700;
+
+  color: white;
+
+  background-color: hsl(180, 14%, 20%);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.job-position{
+  font-weight: bold;
+
+  margin-bottom: 10px;
+
+  color: hsl(180, 14%, 20%);
+}
+
+.job-plus-details{
+  font-weight: 500;
+  font-size: 13px;
+
+  color: hsl(180, 8%, 52%);
+}
+
+.job-plus-details-divider{
+  margin: 0 10px;
 }
