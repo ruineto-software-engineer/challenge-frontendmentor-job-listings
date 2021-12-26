@@ -5,6 +5,8 @@ import Attribution from "./components/Attribution"
 import "./css/reset.css";
 import "./css/style.css";
 
+import MainBackground from "./assets/images/bg-header-desktop.svg"
+
 import TheAirFilterCompany from "./assets/images/the-air-filter-company.svg";
 import EyecamCo from "./assets/images/eyecam-co.svg";
 import Faceit from "./assets/images/faceit.svg";
@@ -44,6 +46,10 @@ export default function App() {
 
   return(
     <Fragment>
+      <div className="main-background">
+        <img className="main-background-desktop" src={MainBackground} />
+      </div>
+
       <div className="jobs-container">
         { dataReader }
       </div>

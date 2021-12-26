@@ -13,11 +13,19 @@ body{
   background-color: hsl(180, 52%, 96%);
 }
 
+.main-background-desktop{
+  width: 100%;
+
+  background-color: hsl(180, 29%, 50%);
+}
+
 .jobs-container{
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  margin-top: 45px;
 }
 
 .job-container{
