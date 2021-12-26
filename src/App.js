@@ -47,7 +47,7 @@ export default function App() {
   return(
     <Fragment>
       <div className="main-background">
-        <img className="main-background-desktop" src={MainBackground} />
+        <img alt="main-background-desktop" className="main-background-desktop" src={MainBackground} />
       </div>
 
       <div className="jobs-container">
