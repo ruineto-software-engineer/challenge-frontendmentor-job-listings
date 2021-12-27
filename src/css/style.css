@@ -18,6 +18,7 @@ body{
 }
 
 .main-background-desktop{
+  height: 156px;
   width: 100%;
 
   background-color: hsl(180, 29%, 50%);
@@ -36,13 +37,24 @@ body{
   margin-top: 107px;
 }
 
+.jobs-search-bar-container{
+  width: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  position: relative;
+  top: 118px;
+  left: 0;
+}
+
 .jobs-search-bar{
-  height: 60px;
   width: 80%;
 
   padding: 15px 35px;
   margin: 10px 0;
-  margin-bottom: 25px;
+  margin-bottom: 35px;
 
   border-left: 0px solid hsl(180, 29%, 50%);
   
@@ -55,8 +67,69 @@ body{
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
 
-  position: relative;
+.jobs-search-bar-items{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.jobs-search-bar-item-container{
+  margin: 5px 5px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.jobs-search-bar-item{
+  font-size: 11px;
+  font-weight: bold;
+
+  color: hsl(180, 29%, 50%);
+
+  padding: 9px 8px 6px;
+
+  border-radius: 5px 0px 0px 5px;
+
+  background-color: hsl(180, 52%, 96%);
+
+  cursor: pointer;
+
+  transition: all .2s ease-in-out;
+}
+
+.jobs-search-bar-item-x{
+  font-size: 16px;
+  font-weight: bold;
+
+  color: white;
+
+  padding: 5px 5px;
+
+  border-radius: 0px 5px 5px 0px;
+
+  background-color: hsl(180, 29%, 50%);
+
+  display: flex;
+  align-content: center;
+  justify-content: center;
+
+  cursor: pointer;
+
+  transition: all .2s ease-in-out;
+}
+
+.jobs-search-bar-item:hover{
+  background-color: hsl(180, 29%, 50%);
+
+  color: white;
+}
+
+.jobs-search-bar-item-x:hover{
+  background-color: hsl(180, 14%, 20%);
+
+  color: white;
 }
 
 .jobs-search-bar-clear{

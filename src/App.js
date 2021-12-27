@@ -6,8 +6,7 @@ import SearchBar from "./components/SearchBar"
 import "./css/reset.css";
 import "./css/style.css";
 
-import MainBackground from "./assets/images/bg-header-desktop.svg"
-
+import MainBackground from "./assets/images/bg-header-desktop.svg";
 import TheAirFilterCompany from "./assets/images/the-air-filter-company.svg";
 import EyecamCo from "./assets/images/eyecam-co.svg";
 import Faceit from "./assets/images/faceit.svg";
@@ -22,6 +21,7 @@ import Account from "./assets/images/account.svg";
 export default function App() {
   const [marginBottom, setMarginBottom] = useState('main-background-mb');
   const [searchBar, setSearchBar] = useState('');
+  const [generalObjects, setGeneralObjects] = useState([]);
 
   const companies = {
     "Photosnap": Photosnap,
@@ -36,9 +36,24 @@ export default function App() {
     "The Air Filter Company": TheAirFilterCompany
   }
 
-  function initializeFiltering() {
+  function initializeFiltering(arrayItem) {
     setMarginBottom('');
-    setSearchBar(<SearchBar />);
+
+    if(generalObjects.indexOf(arrayItem) === -1){
+      setGeneralObjects([ ...generalObjects, arrayItem ]);
+      setSearchBar(
+        <SearchBar arrayGeneralItems={[ ...generalObjects, arrayItem ]} 
+          clear={clearArray}
+        />);
+    }else{
+      return;
+    }
+  }
+
+  function clearArray() {
+    setMarginBottom('main-background-mb');
+    setSearchBar('');
+    setGeneralObjects([]);
   }
 
   const dataReader = Data.map((data) => {
@@ -52,17 +67,17 @@ export default function App() {
         />
       </Fragment>
     );
-  })
+  });
 
   return(
     <Fragment>
       <div className={`main-background ${ marginBottom }`}>
         <img alt="main-background-desktop" className="main-background-desktop" src={MainBackground} />
       </div>
+      
+      { searchBar }
 
       <div className="jobs-container">
-        { searchBar }
-
         { dataReader }
       </div>
 

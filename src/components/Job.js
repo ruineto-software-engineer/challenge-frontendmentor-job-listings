@@ -36,8 +36,8 @@ export default function Job(props) {
         </div>
 
         <div className="job-particulars">
-          <span onClick={props.setStageSearchBar} className="job-particulars-role">{props.role}</span>
-          <span onClick={props.setStageSearchBar} className="job-particulars-level">{props.level}</span>
+          <span onClick={() => props.setStageSearchBar(props.role)} className="job-particulars-role">{props.role}</span>
+          <span onClick={() => props.setStageSearchBar(props.level)} className="job-particulars-level">{props.level}</span>
 
           {
             props.languages.map((currentLanguage) => {
