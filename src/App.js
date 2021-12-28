@@ -2,7 +2,7 @@ import { Fragment, useState } from "react";
 import Data from "./assets/data/data.json";
 import Job from "./components/Job";
 import Attribution from "./components/Attribution";
-import SearchBar from "./components/SearchBar"
+import SearchBar from "./components/SearchBar";
 import "./css/reset.css";
 import "./css/style.css";
 
@@ -22,7 +22,6 @@ export default function App() {
   const [marginBottom, setMarginBottom] = useState('main-background-mb');
   const [searchBar, setSearchBar] = useState('');
   const [generalObjects, setGeneralObjects] = useState([]);
-
   const companies = {
     "Photosnap": Photosnap,
     "Manage": Manage,
@@ -42,9 +41,12 @@ export default function App() {
     if(generalObjects.indexOf(arrayItem) === -1){
       setGeneralObjects([ ...generalObjects, arrayItem ]);
       setSearchBar(
-        <SearchBar arrayGeneralItems={[ ...generalObjects, arrayItem ]} 
+        <SearchBar 
+          arrayGeneralItems={[ ...generalObjects, arrayItem ]}
+          setStageArrayGeneralItems={setGeneralObjects}
           clear={clearArray}
-        />);
+        />
+      );
     }else{
       return;
     }
@@ -59,15 +61,32 @@ export default function App() {
   const dataReader = Data.map((data) => {
     return(
       <Fragment key={data.id}>
-        <Job logo={companies[data.company]} company={data.company} new={data.new} 
-          featured={data.featured} postedAt={data.postedAt} contract={data.contract} 
-          location={data.location} position={data.position} role={data.role} 
+        <Job logo={companies[data.company]} company={data.company} new={data.new}
+          featured={data.featured} postedAt={data.postedAt} contract={data.contract}
+          location={data.location} position={data.position} role={data.role}
           level={data.level} tools={data.tools} languages={data.languages}
           setStageSearchBar={initializeFiltering}
         />
       </Fragment>
     );
   });
+  
+  /*   
+  const dataFilterReader = Data.map((data) => {
+    return(
+      <Fragment key={data.id}>
+        {
+          data.languages.filter((language, index) => {
+            return(language === generalObjects[index]);
+          })
+        }
+      </Fragment>
+    );
+  }) 
+  */
+
+  /* console.log(dataFilterReader); */
+  console.log(generalObjects);
 
   return(
     <Fragment>
@@ -78,7 +97,11 @@ export default function App() {
       { searchBar }
 
       <div className="jobs-container">
-        { dataReader }
+        { /* generalObjects.length !== 0 ?
+            dataFilterReader
+          :
+            dataReader */ dataReader
+        }
       </div>
 
       <Attribution />

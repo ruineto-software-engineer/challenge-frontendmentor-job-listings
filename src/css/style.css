@@ -120,12 +120,6 @@ body{
   transition: all .2s ease-in-out;
 }
 
-.jobs-search-bar-item:hover{
-  background-color: hsl(180, 29%, 50%);
-
-  color: white;
-}
-
 .jobs-search-bar-item-x:hover{
   background-color: hsl(180, 14%, 20%);
 
@@ -371,7 +365,9 @@ body{
   color: white;
 }
 
-.attribution { 
+.attribution {
+  width: 100%;
+
   font-size: 11px;
   text-align: center;
 
@@ -384,6 +380,10 @@ body{
   display: flex;
   align-items: center;
   justify-content: center;
+
+  position: fixed;
+  bottom: 0;
+  left: 0;
 }
 
 .attribution a { 
