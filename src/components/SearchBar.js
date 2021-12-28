@@ -21,15 +21,21 @@ export default function SearchBar(props) {
 
     if(arraySearchItems.length === 1 && firstClick === true){
       props.clear();
+    }else if(props.arrayGeneralItems.length === 1 && firstClick === false){
+      props.clear();
+    }else{
+      const arrayFilteredGeneralItemsReader = arrayItems.filter((item) => {
+        return item !== nameFiltered;
+      });
+  
+      setArraySeachItems(arrayFilteredGeneralItemsReader);
+      props.setStageArrayGeneralItems(arrayFilteredGeneralItemsReader);
     }
-
-    const arrayFilteredGeneralItemsReader = arrayItems.filter((item) => {
-      return item !== nameFiltered;
-    });
-
-    setArraySeachItems(arrayFilteredGeneralItemsReader);
-    props.setStageArrayGeneralItems(arrayFilteredGeneralItemsReader);
   }
+
+  console.log(firstClick);
+  console.log(arraySearchItems);
+  console.log(props.arrayGeneralItems);
 
   return(
     <Fragment>

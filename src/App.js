@@ -53,6 +53,7 @@ export default function App() {
   }
 
   function clearArray() {
+    console.log("Entrei na função clearArray().");
     setMarginBottom('main-background-mb');
     setSearchBar('');
     setGeneralObjects([]);
@@ -71,21 +72,26 @@ export default function App() {
     );
   });
   
-  /*   
   const dataFilterReader = Data.map((data) => {
     return(
       <Fragment key={data.id}>
         {
-          data.languages.filter((language, index) => {
-            return(language === generalObjects[index]);
-          })
+          data.languages.filter((langague) => langague.includes(generalObjects)).map((object) => (
+            <Fragment key={object}>
+              <Job logo={companies[data.company]} company={data.company} new={data.new}
+                featured={data.featured} postedAt={data.postedAt} contract={data.contract}
+                location={data.location} position={data.position} role={data.role}
+                level={data.level} tools={data.tools} languages={data.languages}
+                setStageSearchBar={initializeFiltering}
+              />
+            </Fragment>
+          ))
         }
       </Fragment>
     );
   }) 
-  */
-
-  /* console.log(dataFilterReader); */
+ 
+  console.log(dataFilterReader);
   console.log(generalObjects);
 
   return(
@@ -97,10 +103,11 @@ export default function App() {
       { searchBar }
 
       <div className="jobs-container">
-        { /* generalObjects.length !== 0 ?
+        { generalObjects.length !== 0 ?
             dataFilterReader
           :
-            dataReader */ dataReader
+            dataReader  
+            /* dataReader */ 
         }
       </div>
 
