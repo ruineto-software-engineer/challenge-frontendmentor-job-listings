@@ -76,7 +76,7 @@ export default function App() {
     return(
       <Fragment key={data.id}>
         {
-          data.languages.filter((langague) => langague.includes(generalObjects)).map((object) => (
+          data.languages.filter((language, index) => language.includes(generalObjects[index])).map((object) => (
             <Fragment key={object}>
               <Job logo={companies[data.company]} company={data.company} new={data.new}
                 featured={data.featured} postedAt={data.postedAt} contract={data.contract}
@@ -106,8 +106,7 @@ export default function App() {
         { generalObjects.length !== 0 ?
             dataFilterReader
           :
-            dataReader  
-            /* dataReader */ 
+            dataReader
         }
       </div>
 
