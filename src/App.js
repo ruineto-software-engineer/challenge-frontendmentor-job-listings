@@ -65,11 +65,21 @@ export default function App() {
     const idComponentArray = [];
     const idResultArray = [];
     const objectDataFiltered = [];
+
+    //identifico os itens repetidos.
     for (let i = 0; i < currentArray.length; i++) {
       let element = currentArray[i];
       
       for (let j = 0; j < Data.length; j++) {
         let dataElement = Data[j];
+
+        if (element === dataElement.role) {
+          idComponentArray.push(dataElement.id);
+        }
+
+        if (element === dataElement.level) {
+          idComponentArray.push(dataElement.id);
+        }
         
         for (let k = 0; k < dataElement.languages.length; k++) {
           const languageElement = dataElement.languages[k];
@@ -78,9 +88,18 @@ export default function App() {
             idComponentArray.push(dataElement.id);
           }
         }
+
+        for (let q = 0; q < dataElement.tools.length; q++) {
+          const toolsElement = dataElement.tools[q];
+          
+          if (toolsElement === element) {
+            idComponentArray.push(dataElement.id);
+          }
+        }
       }
     }
 
+    //elimino todos que não são repetidos.
     for (let t = 0; t < idComponentArray.length; t++) {
       let counter = 0;
       const idElement = idComponentArray[t];
@@ -100,10 +119,15 @@ export default function App() {
       counter = 0;
     }
 
+    //removo todos os itens que tem duplicatas.
     const idFilteredResultArray = idResultArray.filter((currentItem, i) => 
       idResultArray.indexOf(currentItem) === i
     );
 
+    /*
+      e finalmente adiciono todos os itens em forma de objeto do arquivo data para um array,
+      visando ser rodado um map para renderizar os componentes em tela.
+    */
     for (let w = 0; w < Data.length; w++) {
       const dataElementChecked = Data[w];
       
@@ -116,6 +140,7 @@ export default function App() {
       }
     }
 
+    //retorno o array de objetos que quero que seja renderizado.
     return objectDataFiltered;
   }
 
