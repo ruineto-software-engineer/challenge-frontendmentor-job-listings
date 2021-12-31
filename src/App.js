@@ -5,7 +5,6 @@ import Attribution from "./components/Attribution";
 import SearchBar from "./components/SearchBar";
 import "./css/reset.css";
 import "./css/style.css";
-
 import MainBackground from "./assets/images/bg-header-desktop.svg";
 import TheAirFilterCompany from "./assets/images/the-air-filter-company.svg";
 import EyecamCo from "./assets/images/eyecam-co.svg";
@@ -22,6 +21,7 @@ export default function App() {
   const [marginBottom, setMarginBottom] = useState('main-background-mb');
   const [searchBar, setSearchBar] = useState('');
   const [generalObjects, setGeneralObjects] = useState([]);
+  const [renderFilteredItems, setRenderFilteredItems] = useState([]);
   const companies = {
     "Photosnap": Photosnap,
     "Manage": Manage,
@@ -40,6 +40,8 @@ export default function App() {
 
     if(generalObjects.indexOf(arrayItem) === -1){
       setGeneralObjects([ ...generalObjects, arrayItem ]);
+      setRenderFilteredItems(dataFilter([ ...generalObjects, arrayItem ]));
+      console.log(dataFilter([ ...generalObjects, arrayItem ]));
       setSearchBar(
         <SearchBar 
           arrayGeneralItems={[ ...generalObjects, arrayItem ]}
@@ -59,6 +61,64 @@ export default function App() {
     setGeneralObjects([]);
   }
 
+  function dataFilter(currentArray) {
+    const idComponentArray = [];
+    const idResultArray = [];
+    const objectDataFiltered = [];
+    for (let i = 0; i < currentArray.length; i++) {
+      let element = currentArray[i];
+      
+      for (let j = 0; j < Data.length; j++) {
+        let dataElement = Data[j];
+        
+        for (let k = 0; k < dataElement.languages.length; k++) {
+          const languageElement = dataElement.languages[k];
+          
+          if (languageElement === element) {
+            idComponentArray.push(dataElement.id);
+          }
+        }
+      }
+    }
+
+    for (let t = 0; t < idComponentArray.length; t++) {
+      let counter = 0;
+      const idElement = idComponentArray[t];
+
+      for (let s = 0; s < idComponentArray.length; s++) {
+        const idCounterElement = idComponentArray[s];
+        
+        if(idElement === idCounterElement){
+          counter++;
+        }
+      }
+      
+      if(counter === currentArray.length){
+        idResultArray.push(idElement);
+      }
+
+      counter = 0;
+    }
+
+    const idFilteredResultArray = idResultArray.filter((currentItem, i) => 
+      idResultArray.indexOf(currentItem) === i
+    );
+
+    for (let w = 0; w < Data.length; w++) {
+      const dataElementChecked = Data[w];
+      
+      for (let r = 0; r < idFilteredResultArray.length; r++) {
+        const idFilteredElement = idFilteredResultArray[r];
+        
+        if(dataElementChecked.id === idFilteredElement){
+          objectDataFiltered.push(dataElementChecked);
+        }
+      }
+    }
+
+    return objectDataFiltered;
+  }
+
   const dataReader = Data.map((data) => {
     return(
       <Fragment key={data.id}>
@@ -71,27 +131,21 @@ export default function App() {
       </Fragment>
     );
   });
-  
-  const dataFilterReader = Data.map((data) => {
+   
+  const dataFilterReader = renderFilteredItems.map((object) => {
     return(
-      <Fragment key={data.id}>
-        {
-          data.languages.filter((language, index) => language.includes(generalObjects[index])).map((object) => (
-            <Fragment key={object}>
-              <Job logo={companies[data.company]} company={data.company} new={data.new}
-                featured={data.featured} postedAt={data.postedAt} contract={data.contract}
-                location={data.location} position={data.position} role={data.role}
-                level={data.level} tools={data.tools} languages={data.languages}
-                setStageSearchBar={initializeFiltering}
-              />
-            </Fragment>
-          ))
-        }
-      </Fragment>
+      <Fragment key={object}>
+        <Job logo={companies[object.company]} company={object.company} new={object.new}
+          featured={object.featured} postedAt={object.postedAt} contract={object.contract}
+          location={object.location} position={object.position} role={object.role}
+          level={object.level} tools={object.tools} languages={object.languages}
+          setStageSearchBar={initializeFiltering}
+        />
+      </Fragment>      
     );
-  }) 
- 
-  console.log(dataFilterReader);
+  })
+
+  console.log(dataFilterReader); 
   console.log(generalObjects);
 
   return(
@@ -105,7 +159,7 @@ export default function App() {
       <div className="jobs-container">
         { generalObjects.length !== 0 ?
             dataFilterReader
-          :
+          :  
             dataReader
         }
       </div>
