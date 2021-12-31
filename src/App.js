@@ -134,7 +134,7 @@ export default function App() {
    
   const dataFilterReader = renderFilteredItems.map((object) => {
     return(
-      <Fragment key={object}>
+      <Fragment key={object.id}>
         <Job logo={companies[object.company]} company={object.company} new={object.new}
           featured={object.featured} postedAt={object.postedAt} contract={object.contract}
           location={object.location} position={object.position} role={object.role}
