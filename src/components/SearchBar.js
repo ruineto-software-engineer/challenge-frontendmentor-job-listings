@@ -1,25 +1,47 @@
-import { Fragment, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 
 export default function SearchBar(props) {
   const [arraySearchItems, setArraySeachItems] = useState([]);
+  const [arrayGeneralItems, setArrayGeneralItems] = useState(props.arrayGeneralItems);
   const [firstClick, setFirstClick] = useState(false);
+  const [choosedItem, setChoosedItem] = useState('');
 
-  const arrayGeneralItemsReader = props.arrayGeneralItems.map((item) => {
+  useEffect(() => {
+    setArrayGeneralItems(props.arrayGeneralItems);
+  }, [props.arrayGeneralItems])
+
+  useEffect(() => {
+    console.log("Entrei no useEffect!");
+    if (arraySearchItems.length === 1) {
+      setArraySeachItems([]);
+      setArrayGeneralItems( 
+        arraySearchItems.filter((item) => {
+          return item !== choosedItem;
+        })
+      );
+    }
+  }, [arraySearchItems, choosedItem])
+
+  const arrayGeneralItemsReader = arrayGeneralItems.map((item) => {
     return(
       <ItemSearchBar 
         key={item} 
         nameItem={item} 
-        handleClickSearch={() => removeItemsSearchBar(props.arrayGeneralItems, item)}
+        handleClickSearch={() => removeItemsSearchBar(arrayGeneralItems, item)}
       />
     );
   })
 
   function removeItemsSearchBar(arrayItems, nameFiltered) {
+    setChoosedItem(nameFiltered);
+
     if(firstClick === false){
       setFirstClick(true);
     }
 
-    if(arraySearchItems.length === 1 && firstClick === true){
+    if(arrayItems.length === 1 && firstClick === true){
+      props.clear();
+    }else if(arraySearchItems.length === 1 && firstClick === true){
       props.clear();
     }else if(props.arrayGeneralItems.length === 1 && firstClick === false){
       props.clear();
@@ -29,13 +51,16 @@ export default function SearchBar(props) {
       });
   
       setArraySeachItems(arrayFilteredGeneralItemsReader);
+      props.continueFiltering();
       props.setStageArrayGeneralItems(arrayFilteredGeneralItemsReader);
+      props.setStageRenderFilteredItems(props.currentFilter(arrayFilteredGeneralItemsReader));
     }
   }
 
-  console.log(firstClick);
-  console.log(arraySearchItems);
-  console.log(props.arrayGeneralItems);
+  console.log("choosedItem", choosedItem);
+  console.log("firstClick", firstClick);
+  console.log("arraySearchItems", arraySearchItems);
+  console.log("arrayGeneralItems", props.arrayGeneralItems);
 
   return(
     <Fragment>
@@ -43,15 +68,18 @@ export default function SearchBar(props) {
         <div className="jobs-search-bar">
           <div className="jobs-search-bar-items">
             { arraySearchItems.length !== 0 ?
-                arraySearchItems.map((itemFiltered) => {
-                  return(
-                    <ItemSearchBar 
-                      key={itemFiltered} 
-                      nameItem={itemFiltered} 
-                      handleClickSearch={() => removeItemsSearchBar(arraySearchItems, itemFiltered)}
-                    />
-                  );
-                })
+                arrayGeneralItemsReader.length > arraySearchItems.length ?
+                  arrayGeneralItemsReader
+                :
+                  arraySearchItems.map((itemFiltered) => {
+                    return(
+                      <ItemSearchBar 
+                        key={itemFiltered} 
+                        nameItem={itemFiltered} 
+                        handleClickSearch={() => removeItemsSearchBar(arraySearchItems, itemFiltered)}
+                      />
+                    );
+                  })
               :
                 arrayGeneralItemsReader 
             }

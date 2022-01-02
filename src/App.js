@@ -41,32 +41,55 @@ export default function App() {
     if(generalObjects.indexOf(arrayItem) === -1){
       setGeneralObjects([ ...generalObjects, arrayItem ]);
       setRenderFilteredItems(dataFilter([ ...generalObjects, arrayItem ]));
-      console.log(dataFilter([ ...generalObjects, arrayItem ]));
+      console.log("dataFilter([ ...generalObjects, arrayItem ])", dataFilter([ ...generalObjects, arrayItem ]));
       setSearchBar(
         <SearchBar 
           arrayGeneralItems={[ ...generalObjects, arrayItem ]}
           setStageArrayGeneralItems={setGeneralObjects}
           clear={clearArray}
+          currentFilter={dataFilter}
+          currentInitializeFiltering={initializeFiltering}
+          setStageRenderFilteredItems={setRenderFilteredItems}
+          continueFiltering={continueFiltering}
         />
       );
     }else{
       return;
     }
   }
+  
+  function continueFiltering() {
+    console.log("Entrei na função continueFiltering().");
+
+    setSearchBar(
+      <SearchBar 
+        arrayGeneralItems={[ generalObjects ]}
+        setStageArrayGeneralItems={setGeneralObjects}
+        clear={clearArray}
+        currentFilter={dataFilter}
+        currentInitializeFiltering={initializeFiltering}
+        setStageRenderFilteredItems={setRenderFilteredItems}
+        continueFiltering={continueFiltering}
+      />
+    );
+  }
 
   function clearArray() {
     console.log("Entrei na função clearArray().");
+
     setMarginBottom('main-background-mb');
     setSearchBar('');
     setGeneralObjects([]);
   }
 
   function dataFilter(currentArray) {
+    console.log("Entrei na função dataFilter().");
+
     const idComponentArray = [];
     const idResultArray = [];
     const objectDataFiltered = [];
 
-    //identifico os itens repetidos.
+    //Identifico os itens repetidos.
     for (let i = 0; i < currentArray.length; i++) {
       let element = currentArray[i];
       
@@ -99,7 +122,7 @@ export default function App() {
       }
     }
 
-    //elimino todos que não são repetidos.
+    //Elimino todos que não são repetidos.
     for (let t = 0; t < idComponentArray.length; t++) {
       let counter = 0;
       const idElement = idComponentArray[t];
@@ -119,13 +142,13 @@ export default function App() {
       counter = 0;
     }
 
-    //removo todos os itens que tem duplicatas.
+    //Removo todos os itens que tem duplicatas.
     const idFilteredResultArray = idResultArray.filter((currentItem, i) => 
       idResultArray.indexOf(currentItem) === i
     );
 
     /*
-      e finalmente adiciono todos os itens em forma de objeto do arquivo data para um array,
+      E finalmente adiciono todos os itens em forma de objeto do arquivo data para um array,
       visando ser rodado um map para renderizar os componentes em tela.
     */
     for (let w = 0; w < Data.length; w++) {
@@ -140,7 +163,7 @@ export default function App() {
       }
     }
 
-    //retorno o array de objetos que quero que seja renderizado.
+    //Retorno o array de objetos que quero que seja renderizado.
     return objectDataFiltered;
   }
 
@@ -170,8 +193,8 @@ export default function App() {
     );
   })
 
-  console.log(dataFilterReader); 
-  console.log(generalObjects);
+  console.log("dataFilterReader", dataFilterReader); 
+  console.log("generalObjects", generalObjects);
 
   return(
     <Fragment>
