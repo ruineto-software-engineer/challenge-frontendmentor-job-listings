@@ -11,7 +11,6 @@ export default function SearchBar(props) {
   }, [props.arrayGeneralItems])
 
   useEffect(() => {
-    console.log("Entrei no useEffect!");
     if (arraySearchItems.length === 1) {
       setArraySeachItems([]);
       setArrayGeneralItems( 
@@ -56,11 +55,6 @@ export default function SearchBar(props) {
       props.setStageRenderFilteredItems(props.currentFilter(arrayFilteredGeneralItemsReader));
     }
   }
-
-  console.log("choosedItem", choosedItem);
-  console.log("firstClick", firstClick);
-  console.log("arraySearchItems", arraySearchItems);
-  console.log("arrayGeneralItems", props.arrayGeneralItems);
 
   return(
     <Fragment>

@@ -41,7 +41,6 @@ export default function App() {
     if(generalObjects.indexOf(arrayItem) === -1){
       setGeneralObjects([ ...generalObjects, arrayItem ]);
       setRenderFilteredItems(dataFilter([ ...generalObjects, arrayItem ]));
-      console.log("dataFilter([ ...generalObjects, arrayItem ])", dataFilter([ ...generalObjects, arrayItem ]));
       setSearchBar(
         <SearchBar 
           arrayGeneralItems={[ ...generalObjects, arrayItem ]}
@@ -59,8 +58,6 @@ export default function App() {
   }
   
   function continueFiltering() {
-    console.log("Entrei na função continueFiltering().");
-
     setSearchBar(
       <SearchBar 
         arrayGeneralItems={[ generalObjects ]}
@@ -75,16 +72,12 @@ export default function App() {
   }
 
   function clearArray() {
-    console.log("Entrei na função clearArray().");
-
     setMarginBottom('main-background-mb');
     setSearchBar('');
     setGeneralObjects([]);
   }
 
   function dataFilter(currentArray) {
-    console.log("Entrei na função dataFilter().");
-
     const idComponentArray = [];
     const idResultArray = [];
     const objectDataFiltered = [];
@@ -192,9 +185,6 @@ export default function App() {
       </Fragment>      
     );
   })
-
-  console.log("dataFilterReader", dataFilterReader); 
-  console.log("generalObjects", generalObjects);
 
   return(
     <Fragment>
