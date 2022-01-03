@@ -8,6 +8,8 @@ export default function Job(props) {
       <div className="job-container">
         <div className="job-content">
           <img className="job-logo" alt={props.company} src={props.logo} />
+
+          <img className="job-logo-mobile" alt={props.company} src={props.logo} />
           <div>
             <div className="job-details">
               <p className="job-details-company">{props.company}</p>
@@ -33,6 +35,10 @@ export default function Job(props) {
               </p>
             </div>
           </div>
+        </div>
+
+        <div className="divider-container">
+          <hr className="divider"/>
         </div>
 
         <div className="job-particulars">

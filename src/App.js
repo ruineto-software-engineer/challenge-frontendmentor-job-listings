@@ -6,6 +6,7 @@ import SearchBar from "./components/SearchBar";
 import "./css/reset.css";
 import "./css/style.css";
 import MainBackground from "./assets/images/bg-header-desktop.svg";
+import MainBackgroundMobile from "./assets/images/bg-header-mobile.svg";
 import TheAirFilterCompany from "./assets/images/the-air-filter-company.svg";
 import EyecamCo from "./assets/images/eyecam-co.svg";
 import Faceit from "./assets/images/faceit.svg";
@@ -82,7 +83,7 @@ export default function App() {
     const idResultArray = [];
     const objectDataFiltered = [];
 
-    //Identifico os itens repetidos.
+    //I identify the repeated items.
     for (let i = 0; i < currentArray.length; i++) {
       let element = currentArray[i];
       
@@ -115,7 +116,7 @@ export default function App() {
       }
     }
 
-    //Elimino todos que não são repetidos.
+    //I eliminate all that are not repeated.
     for (let t = 0; t < idComponentArray.length; t++) {
       let counter = 0;
       const idElement = idComponentArray[t];
@@ -135,14 +136,14 @@ export default function App() {
       counter = 0;
     }
 
-    //Removo todos os itens que tem duplicatas.
+    //I remove all items that have duplicates.
     const idFilteredResultArray = idResultArray.filter((currentItem, i) => 
       idResultArray.indexOf(currentItem) === i
     );
 
     /*
-      E finalmente adiciono todos os itens em forma de objeto do arquivo data para um array,
-      visando ser rodado um map para renderizar os componentes em tela.
+      And finally I add all the items in object form from the data file to an array, 
+      in order to run a map to render the components on screen.
     */
     for (let w = 0; w < Data.length; w++) {
       const dataElementChecked = Data[w];
@@ -156,7 +157,7 @@ export default function App() {
       }
     }
 
-    //Retorno o array de objetos que quero que seja renderizado.
+    //I return the array of objects I want rendered.
     return objectDataFiltered;
   }
 
@@ -190,6 +191,10 @@ export default function App() {
     <Fragment>
       <div className={`main-background ${ marginBottom }`}>
         <img alt="main-background-desktop" className="main-background-desktop" src={MainBackground} />
+      </div>
+
+      <div className={`main-background-mobile ${ marginBottom }`}>
+        <img alt="main-background-desktop-mobile" className="main-background-desktop" src={MainBackgroundMobile} />
       </div>
       
       { searchBar }
