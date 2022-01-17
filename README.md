@@ -1,12 +1,10 @@
 # Frontend Mentor - Job listings with filtering
 
-![Design preview for the Job listings with filtering coding challenge](./design/desktop-preview.jpg)
+![Design preview for the Job listings with filtering coding challenge](<img src="./src/assets/design/desktop-preview.jpg" />)
 
 ## About
 
-Front-end coding challenge.
-
-[Frontend Mentor](https://www.frontendmentor.io).
+Front-end coding challenge. [Frontend Mentor](https://www.frontendmentor.io).
 
 The challenge is to build out this job listing page and get it looking as close to the design as possible.
 
