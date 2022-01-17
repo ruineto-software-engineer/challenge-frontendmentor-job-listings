@@ -1,6 +1,6 @@
 # Frontend Mentor - Job listings with filtering
 
-![Design preview for the Job listings with filtering coding challenge](<img src="./src/assets/design/desktop-preview.jpg" />)
+Front-end challenge focused on javascript logic, where a list of fictitious vacancies is presented and these must be filtered according to user interaction with the fields.
 
 ## About
 
